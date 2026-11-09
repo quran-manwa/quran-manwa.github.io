@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>القرآن الكريم - منوة خميس البلولي أم إيهاب</title>
+  <meta name="description" content="موقع لقراءة القرآن الكريم كاملاً - منوة خميس البلولي أم إيهاب" />
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap');
+    :root{
+      --bg:#f6f2e8; --paper:#fffdf7; --ink:#24342f; --muted:#6e7c76;
+      --gold:#b68a3a; --green:#1f5b49; --line:#ded6c6;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:"Geeza Pro","Noto Kufi Arabic","Arial",sans-serif}
+    button,input{font:inherit}
+    .cover{
+      min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px;position:relative;overflow:hidden;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(182,138,58,.16), transparent 22%),
+        radial-gradient(circle at 85% 20%, rgba(31,91,73,.13), transparent 26%),
+        linear-gradient(180deg,#f8f4e9 0%,#efe7d7 100%);
+    }
+    .cover:before,.cover:after{
+      content:"";position:absolute;width:280px;height:280px;border:1px solid rgba(182,138,58,.18);
+      transform:rotate(45deg);border-radius:36px;
+    }
+    .cover:before{top:-120px;right:-120px}
+    .cover:after{bottom:-130px;left:-130px}
+    .islamic-mark{
+      width:92px;height:92px;margin:0 auto 18px;position:relative;
+      border:1px solid rgba(182,138,58,.55);border-radius:50%;
+      display:grid;place-items:center;color:var(--gold);font-size:44px;
+      box-shadow:0 0 0 8px rgba(182,138,58,.05);
+    }
+    .islamic-mark:before{
+      content:"";position:absolute;inset:12px;border:1px dashed rgba(31,91,73,.28);border-radius:50%;
+    }
+    .dedication-label{
+      display:inline-block;padding:6px 14px;border-radius:999px;
+      background:rgba(31,91,73,.07);color:var(--green);font-size:14px;margin-top:10px
+    }
+    .ornament{color:var(--gold);letter-spacing:8px;font-size:22px;margin:10px 0 4px}
+    .cover-card{
+      width:min(760px,100%);background:rgba(255,253,247,.96);border:1px solid rgba(182,138,58,.45);
+      border-radius:34px;padding:52px 30px;text-align:center;box-shadow:0 24px 70px rgba(36,52,47,.12);
+      position:relative;z-index:2;
+    }
+    .cover-card:before{
+      content:"";position:absolute;inset:10px;border:1px solid rgba(182,138,58,.22);
+      border-radius:26px;pointer-events:none;
+    }
+    .bism{font-size:clamp(26px,5vw,48px);color:var(--green);margin-bottom:26px}
+    h1{font-size:clamp(34px,7vw,68px);margin:0 0 12px;line-height:1.3}
+    .name{font-size:clamp(22px,4vw,38px);color:var(--gold);font-weight:700;margin:18px 0 34px}
+    .enter{
+      border:0;border-radius:999px;background:var(--green);color:white;padding:14px 28px;cursor:pointer;
+      box-shadow:0 8px 24px rgba(31,91,73,.22)
+    }
+    .app{display:none;min-height:100vh}
+    header{position:sticky;top:0;z-index:5;background:rgba(246,242,232,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    .header-inner{max-width:1200px;margin:auto;padding:14px 18px;display:flex;gap:12px;align-items:center;justify-content:space-between}
+    .brand{font-weight:800;color:var(--green)}
+    .homebtn{border:1px solid var(--line);background:var(--paper);padding:9px 14px;border-radius:12px;cursor:pointer}
+    main{max-width:1200px;margin:auto;padding:24px 18px 60px}
+    .toolbar{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:18px}
+    .search{width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:14px;background:var(--paper)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+    .surah-card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:15px;cursor:pointer;text-align:right}
+    .surah-card:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.06)}
+    .surah-num{display:inline-grid;place-items:center;width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;color:var(--gold);margin-left:8px}
+    .reader{display:none}
+    .reader-top{display:flex;gap:10px;align-items:center;margin-bottom:18px;flex-wrap:wrap}
+    .back{border:1px solid var(--line);background:var(--paper);border-radius:12px;padding:10px 14px;cursor:pointer}
+    .surah-title{text-align:center;font-size:32px;color:var(--green);margin:18px 0 8px}
+    .ayahs{
+  background:#fffef9;
+  border:1px solid #d8cfbd;
+  border-radius:22px;
+  padding:34px 28px;
+  line-height:2.5;
+  font-family:"Amiri Quran","Traditional Arabic","Noto Naskh Arabic",serif;
+  font-size:clamp(25px,3.3vw,39px);
+  text-align:justify;
+  min-height:68vh;
+  box-shadow:0 10px 32px rgba(40,45,35,.06);
+}
+.page-shell{max-width:820px;margin:0 auto}
+.page-meta{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:12px 2px 16px;color:var(--muted);font-size:14px}
+.page-nav{display:flex;justify-content:space-between;gap:12px;margin-top:18px}
+.page-nav button{flex:1}
+.reader-controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:0 0 14px}
+.reader-controls button{border:1px solid var(--line);background:var(--paper);border-radius:12px;padding:9px 13px;cursor:pointer}
+.ayah-text{display:inline}
+
+    .ayah-num{display:inline-grid;place-items:center;min-width:31px;height:31px;padding:0 8px;border:1px solid var(--gold);border-radius:50%;font-family:"Geeza Pro","Arial",sans-serif;font-size:14px;color:var(--gold);vertical-align:middle;margin:0 4px}
+    .loading,.error{text-align:center;padding:36px;color:var(--muted)}
+    footer{text-align:center;color:var(--muted);font-size:13px;margin-top:28px;line-height:1.8}
+    footer a{color:var(--green)}
+  .surah-nav{display:flex;justify-content:space-between;gap:12px;margin-top:22px;flex-wrap:wrap}.navbtn{flex:1;min-width:160px;border:0;border-radius:14px;background:var(--green);color:#fff;padding:13px 16px;cursor:pointer}.navbtn.secondary{background:var(--paper);color:var(--green);border:1px solid var(--line)}</style>
+</head>
+<body>
+  <section class="cover" id="cover">
+    <div class="cover-card">
+      <div class="islamic-mark">☾</div>
+      <div class="bism">﷽</div>
+      <div class="ornament">۞ ۞ ۞</div>
+      <h1>القرآن الكريم</h1>
+      <div class="dedication-label">صدقة جارية ودعاء بالرحمة</div>
+      <div style="font-size:clamp(16px,2.5vw,22px);color:#6e7c76;margin:16px 0 6px">عن روح</div>
+      <div class="name">منوة خميس البلولي<br><span style="font-size:.72em">أم إيهاب</span></div>
+      <div style="font-family:'Amiri Quran','Traditional Arabic',serif;color:#6e7c76;font-size:18px;line-height:1.9;margin:0 auto 24px;max-width:560px">
+        نسأل الله أن يجعل هذا القرآن نورًا لها في قبرها، ورحمةً وسكينةً، وأن يرفع بها درجاتها في جنات النعيم.
+      </div>
+      <button class="enter" id="enter">الدخول</button>
+    </div>
+  </section>
+
+  <section class="cover" id="duaPage" style="display:none">
+    <div class="cover-card" style="max-width:850px;padding-top:38px;padding-bottom:38px">
+      <div class="bism" style="margin-bottom:12px">﷽</div>
+      <h2 style="font-size:clamp(28px,5vw,46px);margin:0 0 8px;color:var(--green)">دعاء للمتوفاة</h2>
+      <div style="color:var(--gold);font-size:clamp(18px,3vw,26px);font-weight:700;margin-bottom:24px">منوة خميس البلولي<br><span style="font-size:.78em">أم إيهاب</span></div>
+      <div style="font-family:'Amiri','Traditional Arabic','Noto Naskh Arabic',serif;font-size:clamp(21px,3vw,29px);line-height:2;text-align:right;background:#fffdf7;border:1px solid var(--line);border-radius:20px;padding:22px">
+        اللهم اغفر لها وارحمها، وعافها واعفُ عنها، وأكرم نُزُلها، ووسّع مُدخلها، واغسلها بالماء والثلج والبرد، ونقّها من الخطايا كما نقّيت الثوب الأبيض من الدنس.<br><br>
+        اللهم أبدلها دارًا خيرًا من دارها، وأهلًا خيرًا من أهلها، وأدخلها الجنة، وأعذها من عذاب القبر ومن عذاب النار.<br><br>
+        اللهم اجعل قبرها روضةً من رياض الجنة، ونوّر لها فيه، وارفع درجتها في المهديين، واجمعها بمن تحب في جنات النعيم.<br><br>
+        اللهم اجعل القرآن نورًا لها ورحمة، واجعل ما يُقرأ منه في هذا الموقع سببًا للدعاء لها والرحمة بها.
+      </div>
+      <button class="enter" id="toQuran" style="margin-top:24px">الدخول إلى القرآن الكريم</button>
+    </div>
+  </section>
+
+  <section class="app" id="app">
+    <header>
+      <div class="header-inner">
+        <div class="brand">القرآن الكريم</div>
+        <button class="homebtn" id="home">الصفحة الأولى</button>
+      </div>
+    </header>
+    <main>
+      <section id="indexView">
+        <div class="toolbar">
+          <input class="search" id="search" placeholder="ابحث عن سورة..." />
+        </div>
+        <div class="grid" id="surahGrid"></div>
+      </section>
+
+      <section class="reader" id="readerView">
+        <div class="reader-top"><button class="back" id="back">← فهرس السور</button></div>
+        <div id="readerContent"></div>
+      </section>
+
+      <footer>
+        نص القرآن يُحمّل من بيانات Uthmani منشورة للاستخدام في تطبيقات القرآن.
+        للمراجعة المرجعية: <a href="https://tanzil.net" target="_blank" rel="noopener">Tanzil Project</a>.
+      </footer>
+    </main>
+  </section>
+
+<script>
+const surahs = [
+"الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس","التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس"
+];
+
+let currentSurahData=null;
+let currentSurahNumber=1;
+let currentSurahName='';
+let currentPageIndex=0;
+
+const cover = document.getElementById('cover');
+const app = document.getElementById('app');
+const duaPage = document.getElementById('duaPage');
+const grid = document.getElementById('surahGrid');
+const search = document.getElementById('search');
+const indexView = document.getElementById('indexView');
+const readerView = document.getElementById('readerView');
+const readerContent = document.getElementById('readerContent');
+
+function renderGrid(filter=""){
+  grid.innerHTML="";
+  surahs.forEach((name,i)=>{
+    if(filter && !name.includes(filter.trim())) return;
+    const b=document.createElement('button');
+    b.className='surah-card';
+    b.innerHTML=`<span class="surah-num">${i+1}</span><strong>سورة ${name}</strong>`;
+    b.onclick=()=>openSurah(i+1,name);
+    grid.appendChild(b);
+  })
+}
+
+
+
+const juzStarts=[
+[1,1],[2,142],[2,253],[3,93],[4,24],[4,148],[5,82],[6,111],[7,88],[8,41],
+[9,93],[11,6],[12,53],[15,1],[17,1],[18,75],[21,1],[23,1],[25,21],[27,56],
+[29,46],[33,31],[36,28],[39,32],[41,47],[46,1],[51,31],[58,1],[67,1],[78,1]
+];
+function juzFor(surah,ayah){
+  let juz=1;
+  for(let i=0;i<juzStarts.length;i++){
+    const [s,a]=juzStarts[i];
+    if(surah>s || (surah===s && ayah>=a)) juz=i+1;
+    else break;
+  }
+  return Math.min(juz,30);
+}
+
+function paginateVerses(verses){
+  const pages=[];
+  let page=[], chars=0;
+  const target=1650;
+  verses.forEach((v,idx)=>{
+    const t=v.text||v.arabic||v.text_uthmani||v.content||"";
+    const item={text:t,num:v.id||v.verse||v.verseNumber||v.number||(idx+1)};
+    if(page.length && chars+t.length>target){
+      pages.push(page); page=[]; chars=0;
+    }
+    page.push(item); chars+=t.length;
+  });
+  if(page.length) pages.push(page);
+  return pages;
+}
+
+function renderQuranPage(){
+  const pages=currentSurahData||[];
+  const page=pages[currentPageIndex]||[];
+  const text=page.map(a=>`<span class="ayah-text">${a.text}</span> <span class="ayah-num">${a.num}</span>`).join(" ");
+  const currentJuz=juzFor(currentSurahNumber, page.length ? Number(page[0].num) : 1);
+  const prevDisabled=currentPageIndex===0;
+  const nextDisabled=currentPageIndex===pages.length-1;
+
+  const prevPageBtn = prevDisabled
+    ? `<button class="navbtn secondary" onclick="goPrevSurah()">→ السورة السابقة</button>`
+    : `<button class="navbtn secondary" onclick="changePage(-1)">→ الصفحة السابقة</button>`;
+
+  const nextPageBtn = nextDisabled
+    ? `<button class="navbtn" onclick="goNextSurah()">السورة التالية ←</button>`
+    : `<button class="navbtn" onclick="changePage(1)">الصفحة التالية ←</button>`;
+
+  readerContent.innerHTML=`
+    <div class="page-shell">
+      <h2 class="surah-title">سورة ${currentSurahName}</h2>
+      <div class="reader-controls">
+        <button onclick="adjustFont(1)">تكبير الخط +</button>
+        <button onclick="adjustFont(-1)">تصغير الخط −</button>
+      </div>
+      <div class="page-meta">
+        <span>الجزء ${currentJuz}</span>
+        <span>صفحة ${currentPageIndex+1} من ${pages.length}</span>
+        <span>سورة ${currentSurahName}</span>
+      </div>
+      <div class="ayahs" id="quranPage">${text || "تعذر عرض نص السورة."}</div>
+      <div class="page-nav">${prevPageBtn}${nextPageBtn}</div>
+      <div class="surah-nav">
+        <button class="navbtn secondary" onclick="showIndex()">فهرس السور</button>
+      </div>
+    </div>`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function changePage(step){
+  const next=currentPageIndex+step;
+  if(next<0 || next>=currentSurahData.length) return;
+  currentPageIndex=next;
+  renderQuranPage();
+}
+
+function adjustFont(step){
+  const el=document.getElementById('quranPage');
+  if(!el) return;
+  const current=parseFloat(getComputedStyle(el).fontSize);
+  const next=Math.max(22,Math.min(48,current+(step*2)));
+  el.style.fontSize=next+'px';
+}
+
+function goNextSurah(){
+  if(currentSurahNumber<114) openSurah(currentSurahNumber+1,surahs[currentSurahNumber]);
+  else showIndex();
+}
+function goPrevSurah(){
+  if(currentSurahNumber>1) openSurah(currentSurahNumber-1,surahs[currentSurahNumber-2]);
+  else showIndex();
+}
+
+async function openSurah(n,name){
+  indexView.style.display='none'; readerView.style.display='block';
+  readerContent.innerHTML=`<div class="loading">جارٍ تحميل سورة ${name}...</div>`;
+  window.scrollTo({top:0,behavior:'smooth'});
+  try{
+    const url=`https://cdn.jsdelivr.net/npm/quran-json@3.1.2/dist/chapters/${n}.json`;
+    const res=await fetch(url);
+    if(!res.ok) throw new Error("تعذر التحميل");
+    const data=await res.json();
+    const verses=data.verses||data.ayahs||[];
+    currentSurahNumber=n;
+    currentSurahName=name;
+    currentSurahData=paginateVerses(verses);
+    currentPageIndex=0;
+    renderQuranPage();
+  }catch(e){
+    readerContent.innerHTML=`<div class="error">تعذر تحميل السورة الآن. تأكد من اتصال الإنترنت ثم أعد المحاولة.</div>`;
+  }
+}
+
+function showIndex(){readerView.style.display='none';indexView.style.display='block';window.scrollTo(0,0)};
+document.getElementById('enter').onclick=()=>{cover.style.display='none';duaPage.style.display='flex';window.scrollTo(0,0)};
+document.getElementById('toQuran').onclick=()=>{duaPage.style.display='none';app.style.display='block';renderGrid();window.scrollTo(0,0)};
+document.getElementById('home').onclick=()=>{app.style.display='none';duaPage.style.display='none';cover.style.display='flex';window.scrollTo(0,0)};
+document.getElementById('back').onclick=showIndex;
+search.oninput=e=>renderGrid(e.target.value);
+renderGrid();
+</script>
+</body>
+</html>
